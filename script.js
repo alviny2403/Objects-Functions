@@ -87,4 +87,3 @@ for (let i= 0; i< switchesArr.length; i ++){
 
     keySwitch.appendChild(newDiv)
 }
-
