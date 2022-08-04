@@ -7,21 +7,16 @@ NEW PROJECT
 */
 
 let keySwitch= document.getElementById("key_switch")
-let newDiv, baseH1, newH1, newImg, feedbackBtn, newP
+let newDiv, newH1, newImg, feedbackBtn, newP
 
 let red= {
     name: "Cherry MX Red",
     actuation: "45g",
     style: "linear",
     image: "images/mxRed.gif",
-    feedback: function(){
-        if (document.querySelector("h1").innerHTML != ""){
-            document.querySelector("h1").remove()
-        }
-        let newFeedback= document.createElement("h1")
-        newFeedback.innerHTML= "This is the best switch!"
-
-        keySwitch.prepend(newFeedback)
+    feedback: function(event){
+        event.preventDefault()
+        alert("This is the best switch!")
     }
 }
 
@@ -30,14 +25,9 @@ let blue= {
     actuation: "55g",
     style: "clicky",
     image: "images/mxBlue.gif",
-    feedback: function(){
-        if (document.querySelector("h1").innerHTML != ""){
-            document.querySelector("h1").remove()
-        }
-        let newFeedback= document.createElement("h1")
-        newFeedback.innerHTML= "This is the loud switch!"
-
-        keySwitch.prepend(newFeedback)
+    feedback: function(event){
+        event.preventDefault()
+        alert("This is the clicky switch!")
     }
 }
 
@@ -46,14 +36,9 @@ let brown= {
     actuation: "55g",
     style: "tactile",
     image: "images/mxBrown.gif",
-    feedback: function(){
-        if (document.querySelector("h1").innerHTML != ""){
-            document.querySelector("h1").remove()
-        }
-        let newFeedback= document.createElement("h1")
-        newFeedback.innerHTML= "This is the worst switch!"
-
-        keySwitch.prepend(newFeedback)
+    feedback: function(event){
+        event.preventDefault()
+        alert("This is the worst switch!")
     }
 }
 
@@ -61,8 +46,6 @@ let switchesArr= [red, blue, brown]
 
 for (let i= 0; i< switchesArr.length; i ++){
     newDiv= document.createElement("div")
-
-    baseH1= document.createElement("h1")
 
     newH1= document.createElement("h1")
     newH1.innerHTML= switchesArr[i].name
@@ -76,14 +59,9 @@ for (let i= 0; i< switchesArr.length; i ++){
     newP= document.createElement("p")
     newP.innerHTML= "This switch is "+ switchesArr[i].style+ ", it has an actuation force of "+ switchesArr[i].actuation+ "."
 
-    newDiv.append(baseH1, newH1, newImg, newP, feedbackBtn)
+    newDiv.append(newH1, newImg, newP, feedbackBtn)
 
     feedbackBtn.onclick= switchesArr[i].feedback
-    feedbackBtn.onclose= function(){
-        if (document.querySelector("h1").innerHTML != ""){
-            document.querySelector("h1").innerHTML= ""
-        }
-    }
 
     keySwitch.appendChild(newDiv)
 }
